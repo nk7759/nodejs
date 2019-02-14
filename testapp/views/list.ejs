@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript">
+    var datas = '<%- datas %>';
+    console.log(datas);
+    console.log(JSON.parse(datas));
+    var dataArr = JSON.parse(datas);
+    window.onload = function() {
+      console.log("onload()....");
+      document.getElementById('listTable');
+      var listTable = document.getElementById('listTable');
+      var str = "";
+      for (var i = 0; i < dataArr.length ; i++) {
+        str += "<tr>";
+        str += "<td>";
+        str += "<a href='update?_id="+dataArr[i]._id+"'>";
+        str += dataArr[i]._id;
+        str += "</a>";
+        str += "</td>";
+        str += "<td>";
+        str += dataArr[i].id;
+        str += "</td>";
+        str += "<td>";
+        str += dataArr[i].pw;
+        str += "</td>";
+        str += "<td>";
+        str += "<a href='deleteOK?_id="+dataArr[i]._id+"'>";
+        str += "delete";
+        str += "</a>";
+        str += "</td>";
+        str += "</tr>";
+        //str += "<tr><td>"+dataArr[i]._id+"<tr><td>"+dataArr[i].id+"</td><td>"+dataArr[i].pw+"</td></tr>";
+           }
+      listTable.innerHTML = str;
+    }
+
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= datas %></p>
+    <a href="users">users</a> <a href="/">home</a> <a href="update">update</a> <a href="test">test</a>
+    <hr>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>NO</th>
+          <th>ID</th>
+          <th>PW</th>
+          <th>DEL</th>
+        </tr>
+        <tbody id="listTable">
+
+        </tbody>
+
+      </thead>
+    </table>
+  </body>
+</html>
